@@ -56,3 +56,17 @@ body {
   fill: #551aaf;
   text-anchor: middle;
 }
+
+.tooltip {
+  position: absolute;
+  width: 90px;
+  height: 70px;
+  padding: 2px;
+  padding-top: 8px;
+  font: 12px sans-serif;
+  color: white;
+  text-align: center;
+  background:darkslategray;
+  border: 0;
+  border-radius: 10px;
+}

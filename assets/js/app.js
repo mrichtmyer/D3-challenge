@@ -78,42 +78,34 @@ d3.csv("/assets/data/data.csv").then(function(data,err){
     .append("circle")
     .attr("cx", d => xLinearScale(d.age))
     .attr("cy", d => yLinearScale(d.smokes))
-    .attr("r", "10")
+    .attr("r", "15")
     .attr("fill", "#A6CDDB")
     .attr("opacity", "0.9")
     .attr("stroke-width", "1")
-    .attr("stroke", "white").append("text",d=>d.abbr);
+    .attr("stroke", "white");
 
 
-    /*
-    var text = chartGroup.selectAll("text")
-        .data(circlesGroup)
+    stateab= data.map(element=>element)
+
+    var labels = chartGroup.selectAll()
+        .data(stateab)
         .enter()
-        .append("text");
+        .append("text")
+        .text( (m) =>{return m.abbr})
+        .attr("x", (m) => (xLinearScale(m.age))-10)
+        .attr("y", (m) => yLinearScale(m.smokes)+5)
+        .style("fill","white")
 
-    var textLabels = text
-        .attr("x", function(d){return d.age;})
-        .attr("y", function(d){return d.smokes;}
-        .attr("text",function(d) {return d.abbr}))
-    */
-   
-    // circlesGroup.append("text")
-    //     .data(data)
-    //     .attr('x',d=>d.age)
-    //     .attr('y',d=>d.smokes)
-    //     .text(function(d){return d.abbr});
-
-
-    /*
+    
     // Create tooltip
     var toolTip = d3.tip()
     .attr("class", "tooltip")
     .offset([100, -80])
     .html(function(d) {
-      return (`State: <strong>${d =>d.state}</strong><hr>Poverty: <strong>${d=>d.poverty}</strong>`);
+      return (`<strong>${d.state}</strong><br>Poverty:${d.poverty}%<br>Obesity: ${d.obesity}%`);
     });
 
-    chartGroup.call(toolTip);
+    circlesGroup.call(toolTip);
 
     // Create "mouseover" event listener to display tooltip
     circlesGroup.on("mouseover", function(d) {
@@ -123,7 +115,7 @@ d3.csv("/assets/data/data.csv").then(function(data,err){
     .on("mouseout", function(d) {
         toolTip.hide(d);
     });
-    */
+    
 
 
     // Create axes labels
